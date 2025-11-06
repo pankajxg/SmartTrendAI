@@ -4,17 +4,18 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-nltk.download('punkt', quiet=True)
-nltk.download('stopwords', quiet=True)
-nltk.download('wordnet', quiet=True)
+def ensure_nltk():
+    try:
+        nltk.data.find('tokenizers/punkt')
+        nltk.data.find('corpora/stopwords')
+        nltk.data.find('corpora/wordnet')
+    except LookupError:
+        nltk.download('punkt', quiet=True)
+        nltk.download('stopwords', quiet=True)
+        nltk.download('wordnet', quiet=True)
+        nltk.download('omw-1.4', quiet=True)
 
-# Ensure all necessary NLTK data is available
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
-
-
+ensure_nltk()
 
 def load_data(path):
     return pd.read_csv(path)
@@ -32,7 +33,9 @@ def preprocess_dataframe(df, text_column='text'):
     lemmatizer = WordNetLemmatizer()
     stop_words = set(stopwords.words('english'))
     df = df.copy()
-    df['clean_text'] = df[text_column].apply(clean_text)
+    if text_column not in df.columns:
+        df[text_column] = df.iloc[:,0].astype(str)
+    df['clean_text'] = df[text_column].fillna('').astype(str).apply(clean_text)
     df['tokens'] = df['clean_text'].apply(lambda t: [lemmatizer.lemmatize(w) for w in nltk.word_tokenize(t) if w not in stop_words and w.isalpha()])
     df['processed'] = df['tokens'].apply(lambda tokens: ' '.join(tokens))
     return df
