@@ -8,6 +8,14 @@ nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
+# Ensure all necessary NLTK data is available
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+
+
 def load_data(path):
     return pd.read_csv(path)
 
