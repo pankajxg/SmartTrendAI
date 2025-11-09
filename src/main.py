@@ -15,7 +15,7 @@ def ensure_sample_dataset(path):
         {"date":"2025-10-22","text":"Foldable phones are getting popular and stylish"},
         {"date":"2025-10-23","text":"Users complain about phone overheating after update"},
         {"date":"2025-10-24","text":"Organic skincare product trend rising in social media"},
-        {"date":"2025-10-25","text":"Electric cars discussion trending because of new model launch"},
+        {"date":"2025-10-25","text":"Electric cars  discussion trending because of new model launch"},
         {"date":"2025-10-25","text":"AI cameras and battery performance praised by influencers"},
         {"date":"2025-10-26","text":"Many tweets about sustainable packaging and organic products"},
         {"date":"2025-10-27","text":"Foldable phone sales increased in last quarter"},
