@@ -15,9 +15,9 @@ if not os.path.exists(dataset_path):
     from src.main import ensure_sample_dataset
     ensure_sample_dataset(dataset_path)
 
-st.title("SmartTrendAI - Market Trend Analyzer (Stable)")
+st.title("SmartTrendAI - Market Trend Analyzer ")
 
-uploaded = st.file_uploader("Upload CSV with a text column (optional)", type=['csv'])
+uploaded = st.file_uploader("Upload CSV with a text column if have", type=['csv'])
 if uploaded:
     df = pd.read_csv(uploaded)
 else:
